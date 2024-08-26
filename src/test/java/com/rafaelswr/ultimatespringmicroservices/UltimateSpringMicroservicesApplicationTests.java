@@ -1,0 +1,13 @@
+package com.rafaelswr.ultimatespringmicroservices;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class UltimateSpringMicroservicesApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
