@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: native
+  application:
+    name: config-server
+  main:
+    banner-mode: off
+  devtools:
+    restart:
+      enabled: true
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/configurations
+
+server:
+  port: 8888
+
+
+

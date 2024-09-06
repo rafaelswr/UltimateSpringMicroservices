@@ -9,7 +9,7 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
     ports:
-      - "5435:5432"
+      - 5436:5432
     networks:
       - microservices-net
     restart: unless-stopped
@@ -20,7 +20,7 @@ services:
     command: start-dev
     environment:
       KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://postgres:5435/keycloakdb
+      KC_DB_URL: jdbc:postgresql://postgres:5432/${KEYCLOAK_DATABASE}
       KC_DB_USERNAME: ${POSTGRES_SQL_USER}
       KC_DB_PASSWORD: ${POSTGRES_SQL_PASSWORD}
 
@@ -29,10 +29,10 @@ services:
       KC_METRICS_ENABLED: true
       KC_HEALTH_ENABLED: true
 
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_PASSWORD}
     ports:
-      - "8090:8080"
+      - 8090:8080
     networks:
       - microservices-net
     restart: unless-stopped
@@ -58,25 +58,25 @@ services:
     container_name: ms_mongo_db
     image: mongo
     ports:
-      - 27029:27017
+      - 27020:27017
     volumes:
       - mongo:/data/db
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
     networks:
       - microservices-net
 
   mongo-express:
     container_name: ms_mongo_express
     image: mongo-express
-    restart: always
+    restart: unless-stopped
     ports:
       - 8081:8081
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ADMIN_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ADMIN_PASSWORD}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongo:27017/
       ME_CONFIG_BASICAUTH: false
     depends_on:
       - mongo
