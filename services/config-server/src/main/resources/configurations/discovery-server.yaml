@@ -1,0 +1,19 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false #to clients
+    fetch-registry: false #fetch registry of eureka, to clients
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}/${server.port}/eureka/
+
+spring:
+  devtools:
+    restart:
+      enabled: true
+  main:
+    banner-mode: off
+
+server:
+  port: 8761
+
