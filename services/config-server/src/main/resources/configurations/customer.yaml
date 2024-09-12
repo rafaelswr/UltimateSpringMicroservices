@@ -4,17 +4,12 @@ spring:
       enabled: true
   data:
     mongodb:
-      username: root
-      password: example
-      host: localhost
+      username: ${USERNAME_MS_CUSTOMER_MONGO}
+      password: ${PASSWORD_MS_CUSTOMER_MONGO}
+      host: ${MONGO_HOST}
       port: 27020
-      authentication-database: admin
-      database: customer
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      authentication-database: ${MONGO_AUTH_DB}
+      database: ${MONGO_DATABASE}
 
 server:
-  port: 8095
+  port: 8099
