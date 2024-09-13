@@ -14,8 +14,9 @@ spring:
     enabled: true
     baseline-description: "init"
     baseline-version: 0
-    user: ${spring.datasource.username}
-    password: ${spring.datasource.password}
+    user: ${USERNAME_MS_PRODUCT_PG}
+    password: ${PASSWORD_MS_PRODUCT_PG}
+    url: ${URL_MS_PRODUCT_PG}
 
 server:
   port: 8989

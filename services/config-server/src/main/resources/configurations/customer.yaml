@@ -4,12 +4,12 @@ spring:
       enabled: true
   data:
     mongodb:
-      username: ${USERNAME_MS_CUSTOMER_MONGO}
-      password: ${PASSWORD_MS_CUSTOMER_MONGO}
-      host: ${MONGO_HOST}
+      username: root
+      password: example
+      host: localhost
       port: 27020
-      authentication-database: ${MONGO_AUTH_DB}
-      database: ${MONGO_DATABASE}
+      authentication-database: admin
+      database: customer
 
 server:
   port: 8099

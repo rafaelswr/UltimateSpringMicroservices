@@ -8,3 +8,10 @@ spring:
     banner-mode: off
   config:
     import: optional:configserver:http://localhost:8888
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    baseline-description: "init"
+    baseline-version: 0
+    user: rafaelswr
+    password: 1223

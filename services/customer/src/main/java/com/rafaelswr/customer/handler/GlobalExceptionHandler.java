@@ -19,18 +19,17 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(exp.getMsg(), HttpStatus.NOT_FOUND);
     }
 
-
+    //data validation
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handle(MethodArgumentNotValidException exp){
         var errors = new HashMap<String, String>();
         exp.getBindingResult().getAllErrors()
-                .forEach(error->{
+                .forEach(error -> {
                     var fieldName = ((FieldError)error).getField();
                     var errorMessage = error.getDefaultMessage();
                     errors.put(fieldName, errorMessage);
                 });
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorResponse(errors));
+        return new ResponseEntity<>(new ErrorResponse(errors), HttpStatus.BAD_REQUEST);
     }
 
 }
