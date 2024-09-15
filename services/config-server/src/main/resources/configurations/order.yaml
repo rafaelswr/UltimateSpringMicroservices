@@ -5,10 +5,15 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     database: postgresql
   datasource:
-    password: ${USERNAME_MS_PS}
-    username: ${USERNAME_MS_PG}
-    url: ${URL_MS_ORDER_PG}
+    username: rafaelswr
+    password: 1223
+    url: jdbc:postgresql://localhost:5436/order
     driver-class-name: org.postgresql.Driver
+
+application:
+  config:
+    customer: http://localhost:8099/customer
+    product: http://localhost:8989/product
 
 server:
   port: 8070

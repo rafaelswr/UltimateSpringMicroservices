@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${URL_MS_PRODUCT_PG}
-    username: ${USERNAME_MS_PG}
-    password: ${PASSWORD_MS_PG}
+    url: jdbc:postgresql://localhost:5436/product
+    username: rafaelswr
+    password: 1223
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -14,9 +14,8 @@ spring:
     enabled: true
     baseline-description: "init"
     baseline-version: 0
-    user: ${USERNAME_MS_PG}
-    password: ${PASSWORD_MS_PG}
-    url: ${URL_MS_PRODUCT_PG}
+    user: rafaelswr
+    password: 1223
 
 server:
   port: 8989

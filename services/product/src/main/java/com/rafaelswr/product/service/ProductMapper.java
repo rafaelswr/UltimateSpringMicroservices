@@ -34,7 +34,7 @@ public class ProductMapper {
                 .name(product.getName())
                 .description(product.getDescription())
                 .price(product.getPrice())
-                .productId(product.getProduct_id())
+                .productId(product.getId())
                 .requestQuantity(quanyityRequest)
                 .build();
     }
