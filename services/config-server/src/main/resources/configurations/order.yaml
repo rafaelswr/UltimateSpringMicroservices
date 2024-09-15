@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: postgresql
+  datasource:
+    password: ${USERNAME_MS_PS}
+    username: ${USERNAME_MS_PG}
+    url: ${URL_MS_ORDER_PG}
+    driver-class-name: org.postgresql.Driver
+
+server:
+  port: 8070

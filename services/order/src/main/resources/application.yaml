@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: order
+  devtools:
+    restart:
+      enabled: true
+  main:
+    banner-mode: off
+  config:
+    import: optional:configserver:http://localhost:8888
+
+

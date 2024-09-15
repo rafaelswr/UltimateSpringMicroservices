@@ -19,6 +19,7 @@
         <module>services/config-server</module>
         <module>services/discovery-server</module>
         <module>services/product</module>
+        <module>services/order</module>
     </modules>
     <licenses>
         <license/>
