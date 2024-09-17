@@ -30,17 +30,28 @@ public class OrderService {
     }
 
     public Long createOrder(OrderRequest orderRequest) {
-        //check the customer -customer MS - openFeign
+        //todo check the customer -customer MS - openFeign
         var customer = customerClient.findCustomerById(orderRequest.customerId())
                 .orElseThrow(() -> new BusinessException("Cannot create order :: no customer found !"));
 
         //todo purchase the products -Product MS- RestTemplate
+        productClient.purchaseProducts(orderRequest.products());
+
         //todo persist order
+        var order = orderRepository.save(orderMapper.toOrder(orderRequest));
+
         //todo persist order lines
+        for (PurchaseRequest purchaseRequest : orderRequest.products()){
+            orderLineService.saveOrderLine( new OrderLineRequest(
+                    null,
+                    order.getId(),
+                    purchaseRequest.product_id(),
+                    purchaseRequest.quantity())
+            );
+        }
         //todo start payment process
         //todo send the order confirmation -- notification ms (kafka)
-
-    return null;
+        return null;
     }
 
 }
