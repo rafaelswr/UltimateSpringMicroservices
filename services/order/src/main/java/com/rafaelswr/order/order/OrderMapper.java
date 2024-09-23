@@ -24,7 +24,14 @@ public class OrderMapper {
     }
 
     public OrderResponse toOrderResponse(Order order){
-        return null;
+        return OrderResponse.builder()
+                .id(order.getId())
+                .amount(order.getTotalAmount())
+                .dateHour(order.getCreated_at())
+                .reference(order.getReference())
+                .customerId(order.getCustomerId())
+                .paymentMethod(order.getPaymentMethod())
+                .build();
     }
 
 
