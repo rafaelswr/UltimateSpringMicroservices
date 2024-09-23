@@ -15,5 +15,15 @@ application:
     customer: http://localhost:8099/customer
     product: http://localhost:8989/product
 
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.Mapping: orderConfirmation:com.rafaelswr.order.kafka.OrderConfirmation
+
+
+
 server:
   port: 8070
