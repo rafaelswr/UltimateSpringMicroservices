@@ -20,6 +20,7 @@
         <module>services/discovery-server</module>
         <module>services/product</module>
         <module>services/order</module>
+        <module>services/payment-service</module>
     </modules>
     <licenses>
         <license/>
