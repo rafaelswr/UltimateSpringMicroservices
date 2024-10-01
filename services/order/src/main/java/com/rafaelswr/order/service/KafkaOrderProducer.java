@@ -22,6 +22,7 @@ public class KafkaOrderProducer {
                         .withPayload(orderConfirmation)
                         .setHeader(KafkaHeaders.TOPIC, "orderNotification-topic")
                         .build();
+                log.info("Order Confirmation Object: " + message);
                 kafkaTemplate.send(message);
 
         }

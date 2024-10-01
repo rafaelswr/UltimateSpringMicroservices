@@ -8,7 +8,3 @@ spring:
     name: payment-service
   config:
     import: optional:configserver:http://localhost:8888
-
-application:
-  config:
-    order: http://localhost:8070/order

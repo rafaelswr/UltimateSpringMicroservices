@@ -1,22 +1,25 @@
 package com.rafaelswr.order.service;
 
 import com.rafaelswr.order.customer.CustomerClient;
+import com.rafaelswr.order.customer.CustomerResponse;
 import com.rafaelswr.order.exception.BusinessException.BusinessException;
 import com.rafaelswr.order.kafka.OrderConfirmation;
-import com.rafaelswr.order.order.Order;
 import com.rafaelswr.order.order.OrderMapper;
 import com.rafaelswr.order.order.OrderRequest;
 import com.rafaelswr.order.order.OrderResponse;
+import com.rafaelswr.order.order.PaymentMethod;
 import com.rafaelswr.order.orderLine.OrderLineRequest;
+import com.rafaelswr.order.payment.PaymentClient;
+import com.rafaelswr.order.payment.PaymentRequest;
 import com.rafaelswr.order.product.ProductClient;
 import com.rafaelswr.order.product.PurchaseRequest;
 import com.rafaelswr.order.repository.OrderRepository;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -29,14 +32,17 @@ public class OrderService {
 
     private final KafkaOrderProducer kafkaOrderProducer;
 
+    private final PaymentClient paymentClient;
+
     @Autowired
-    public OrderService(CustomerClient customer, CustomerClient customerClient, OrderRepository orderRepository, OrderMapper orderMapper, ProductClient productClient, OrderLineService orderLineService, KafkaOrderProducer kafkaOrderProducer) {
+    public OrderService(CustomerClient customer, CustomerClient customerClient, OrderRepository orderRepository, OrderMapper orderMapper, ProductClient productClient, OrderLineService orderLineService, KafkaOrderProducer kafkaOrderProducer, PaymentClient paymentClient) {
         this.customerClient = customerClient;
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
         this.productClient = productClient;
         this.orderLineService = orderLineService;
         this.kafkaOrderProducer = kafkaOrderProducer;
+        this.paymentClient = paymentClient;
     }
 
     public Long createOrder(OrderRequest orderRequest) {
@@ -59,8 +65,14 @@ public class OrderService {
                     purchaseRequest.quantity())
             );
         }
-        //todo start payment process
-
+        //todo start payment process with notification payment (kafka)
+        paymentClient.createPayment(PaymentRequest.builder()
+                        .paymentMethod(orderRequest.paymentMethod())
+                        .orderId(orderRequest.id())
+                        .customer(customer)
+                        .orderReference(orderRequest.reference())
+                        .amount(orderRequest.totalAmount())
+                .build());
 
         //todo send the order confirmation -- notification ms (kafka)
         kafkaOrderProducer.sendOrderConfirmation(OrderConfirmation

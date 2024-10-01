@@ -11,7 +11,6 @@ public record PaymentRequest(
         Long id,
         PaymentMethod paymentMethod,
         BigDecimal amount,
-
         @NotBlank
         Long orderId,
         String orderReference,
