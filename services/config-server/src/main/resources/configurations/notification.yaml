@@ -7,6 +7,32 @@ spring:
       authentication-database: admin
       host: localhost
       port: 27020
+  kafka:
+    consumer:
+      value-deserializer: org.apache.kafka.serialization.StringDeserializer
+      key-deserializer: org.springframework.kafka.support.deserializer.JsonDeserializer
+      bootstrap-servers: localhost:9092
+      group-id: paymentGroup,orderGroup
+      auto-offset-reset: earliest
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.json.type.mapping: orderConfirmation:com.rafaelswr.order.kafka.OrderConfirmation,paymentNotification:com.rafaelswr.paymentservice.kafka.PaymentNotification
+  mail:
+    host: localhost
+    port: 1025
+    username: rafaelswr
+    password: 1223
+    properties:
+      mail:
+        smtp:
+          trust: '*'
+        auth: true
+        starttls:
+          enabled:true
+        connectionTimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+
 
 server:
   port: 8060

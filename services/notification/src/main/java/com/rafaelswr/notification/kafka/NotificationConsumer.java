@@ -37,13 +37,20 @@ public class NotificationConsumer {
                         .build()
         );
 
-        // todo send email
-      
+        var customerFullName = paymentConfirmation.customerFirstName()+" "+paymentConfirmation.customerLastName();
+        emailService.sentPaymentSuccessEmail(
+                paymentConfirmation.customerEmail(),
+                paymentConfirmation.paymentMethod(),
+                customerFullName,
+                paymentConfirmation.total(),
+                paymentConfirmation.orderReference()
+        );
+
 
     }
 
     @KafkaListener(topics = "orderNotification-topic")
-    public void consumeOrderSuccessNotification(OrderConfirmation orderConfirmation){
+    public void consumeOrderSuccessNotification(OrderConfirmation orderConfirmation) throws MessagingException {
         log.info(String.format("Consuming order from topic:: %s",orderConfirmation));
         notificationRepository.save(
                 Notification.builder()
@@ -54,6 +61,17 @@ public class NotificationConsumer {
         );
 
         // todo send email
+
+        var customerFullName = orderConfirmation.customer().firstName() + " "+orderConfirmation.customer().lastName();
+
+        emailService.sentOrderSuccessEmail(
+                orderConfirmation.customer().email(),
+                customerFullName,
+                orderConfirmation.paymentMethod(),
+                orderConfirmation.totalAmount(),
+                orderConfirmation.orderReference(),
+                orderConfirmation.products()
+        );
     }
 
 
