@@ -2,8 +2,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
     database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     username: rafaelswr
     password: 1223
@@ -14,7 +14,7 @@ application:
   config:
     customer: http://localhost:8099/customer
     product: http://localhost:8989/product
-    payment-service: http://localhost:9090/payment
+    payment: http://localhost:9090/payment
   kafka:
     producer:
       bootstrap-servers: localhost:9092

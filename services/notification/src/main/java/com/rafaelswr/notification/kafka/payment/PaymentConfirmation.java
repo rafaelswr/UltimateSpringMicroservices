@@ -1,14 +1,9 @@
-package com.rafaelswr.paymentservice.kafka;
-
-
-import com.rafaelswr.paymentservice.payment.PaymentMethod;
-import com.rafaelswr.paymentservice.payment.Status;
-import lombok.Builder;
+package com.rafaelswr.notification.kafka.payment;
 
 import java.math.BigDecimal;
 
-@Builder
-public record PaymentNotification(
+public record PaymentConfirmation (
+
         String customerFirstName,
         String customerLastName,
         String customerEmail,
@@ -17,5 +12,6 @@ public record PaymentNotification(
         String orderReference,
         PaymentMethod paymentMethod
 
-) {
+    ){
+
 }

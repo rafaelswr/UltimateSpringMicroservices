@@ -6,5 +6,9 @@ spring:
     banner-mode: off
   application:
     name: payment-service
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8888
   config:
     import: optional:configserver:http://localhost:8888

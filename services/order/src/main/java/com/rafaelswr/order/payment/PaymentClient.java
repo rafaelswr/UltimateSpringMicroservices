@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @FeignClient(
         name = "payment",
-        url = "${application.config.payment-service}"
+        url = "${application.config.payment}"
 )
 public interface PaymentClient {
 
