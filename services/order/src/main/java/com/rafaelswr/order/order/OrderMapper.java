@@ -15,7 +15,6 @@ public class OrderMapper {
 
     public Order toOrder(OrderRequest orderRequest){
         return Order.builder()
-                .id(orderRequest.product_id())
                 .reference(orderRequest.reference())
                 .totalAmount(orderRequest.totalAmount())
                 .customerId(orderRequest.customerId())

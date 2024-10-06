@@ -18,7 +18,6 @@ public record ProductRequest(
         BigDecimal price,
         @Positive(message = "Product stock should have more than 1 product")
         Integer availableQuantity,
-        @NotBlank(message = "Product Category is required")
         Long categoryId
 ) {
 }

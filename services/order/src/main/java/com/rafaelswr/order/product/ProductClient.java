@@ -21,7 +21,8 @@ import static org.springframework.http.HttpMethod.POST;
 public class ProductClient {
 
 
-    @Value("${application.config.product")
+    //@Value("${application.config.product")
+    @Value("http://localhost:8989/product")
     private String productUrl;
     private final RestTemplate restTemplate;
 
@@ -31,7 +32,10 @@ public class ProductClient {
        HttpEntity<List<PurchaseRequest>> requestEntity = new HttpEntity<>(requestBody, headers);
        ParameterizedTypeReference<List<PurchaseResponse>> responseType = new ParameterizedTypeReference<List<PurchaseResponse>>() {};
         ResponseEntity<List<PurchaseResponse>> responseEntity = restTemplate.exchange(
-                productUrl+"/purchase", POST, requestEntity, responseType
+                productUrl+"/purchase",
+                POST,
+                requestEntity,
+                responseType
         );
 
         if(responseEntity.getStatusCode().isError()){

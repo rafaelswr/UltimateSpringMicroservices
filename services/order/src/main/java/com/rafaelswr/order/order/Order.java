@@ -42,7 +42,4 @@ public class Order {
     @Column(updatable = false, nullable = false)
     private LocalDateTime created_at;
 
-    @LastModifiedDate
-    @Column(insertable = false, nullable = false)
-    private LocalDateTime lastModifiedDate;
 }

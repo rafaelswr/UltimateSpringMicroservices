@@ -14,6 +14,7 @@ import com.rafaelswr.order.payment.PaymentRequest;
 import com.rafaelswr.order.product.ProductClient;
 import com.rafaelswr.order.product.PurchaseRequest;
 import com.rafaelswr.order.repository.OrderRepository;
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,7 @@ public class OrderService {
         this.paymentClient = paymentClient;
     }
 
+    @Transactional
     public Long createOrder(OrderRequest orderRequest) {
         //todo check the customer -customer MS - openFeign
         var customer = customerClient.findCustomerById(orderRequest.customerId())

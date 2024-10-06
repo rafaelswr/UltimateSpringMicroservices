@@ -15,7 +15,6 @@ import java.util.List;
 public record OrderRequest(
 
         Long id,
-        Long product_id,
         @NotBlank
         String reference,
         @Positive(message = "Order Amount should be positive")

@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  customer-service:
+    container_name: "ms_customer"
+    image: ms/customer
+    ports:
+      - 8099:8099
+    networks:
+      - microservices-net
+
+networks:
+  microservices-net:
+    external: true

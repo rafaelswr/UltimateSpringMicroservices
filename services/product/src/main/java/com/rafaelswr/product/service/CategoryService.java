@@ -6,6 +6,8 @@ import com.rafaelswr.product.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoryService {
 
@@ -27,6 +29,16 @@ public class CategoryService {
                 .name(categoryDTO.name())
                 .description(categoryDTO.description())
                 .build();
+    }
+    private CategoryDTO toCategoryDTO(Category category){
+        return CategoryDTO.builder()
+                .name(category.getName())
+                .description(category.getDescription())
+                .build();
+    }
+
+    public List<CategoryDTO> getAllCategories() {
+        return categoryRepository.findAll().stream().map(this::toCategoryDTO).toList();
     }
 }
 

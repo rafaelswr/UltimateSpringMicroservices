@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  config-server:
+    container_name: "ms_config"
+    image: ms/config
+    ports:
+      - 8888:8888
+    networks:
+      - microservices-net
+
+networks:
+  microservices-net:
+    external: true
