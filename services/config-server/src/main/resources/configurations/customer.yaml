@@ -4,10 +4,10 @@ spring:
       enabled: true
   data:
     mongodb:
+      host: mongo
+      port: 27017
       username: root
       password: example
-      host: localhost
-      port: 27020
       authentication-database: admin
       database: customer
 
