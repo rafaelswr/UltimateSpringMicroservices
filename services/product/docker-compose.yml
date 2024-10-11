@@ -1,14 +1,15 @@
 version: '3'
 
 services:
-  discovery-server:
-    container_name: "ms_discovery"
-    image: ms/discovery
+  product:
+    container_name: "ms_product"
+    image: ms/product
     ports:
-      - 8761:8761
+      - "8989:8989"
     networks:
       - microservices-net
 
 networks:
   microservices-net:
     external: true
+

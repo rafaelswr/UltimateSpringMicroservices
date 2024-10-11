@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5436/product
+    url: jdbc:postgresql://postgres:5432/product
     username: rafaelswr
     password: 1223
     driver-class-name: org.postgresql.Driver
@@ -19,3 +19,4 @@ spring:
 
 server:
   port: 8989
+
