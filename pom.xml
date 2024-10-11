@@ -23,6 +23,7 @@
         <module>services/payment-service</module>
         <module>services/notification</module>
         <module>services/gateway</module>
+        <module>services/customer</module>
     </modules>
     <licenses>
         <license/>

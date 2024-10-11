@@ -124,7 +124,7 @@ services:
 
 networks:
   microservices-net:
-    driver: bridge
+    external: true
 
 
 volumes:

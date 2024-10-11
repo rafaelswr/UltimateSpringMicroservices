@@ -5,7 +5,7 @@ services:
     container_name: "ms_config"
     image: ms/config
     ports:
-      - 8888:8888
+      - "8888:8888"
     networks:
       - microservices-net
 
