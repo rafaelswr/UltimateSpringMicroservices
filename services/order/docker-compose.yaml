@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  order:
+    container_name: "ms_order"
+    image: ms/order
+    ports:
+      - "8070:8070"
+    networks:
+      - microservices-net
+
+networks:
+  microservices-net:
+    external: true

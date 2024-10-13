@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  payment-service:
+    container_name: "ms_payment"
+    image: ms/payment
+    ports:
+      - "9090:9090"
+    networks:
+      - microservices-net
+
+networks:
+  microservices-net:
+    external: true

@@ -1,10 +1,54 @@
 spring:
   application:
     name: notification
-  config:
-    import: optional:configserver:http://localhost:8888
   devtools:
     restart:
       enabled: true
   main:
     banner-mode: off
+  cloud:
+    config:
+      enabled: false
+  data:
+    mongodb:
+      database: notification
+      username: root
+      password: password
+      authentication-database: admin
+      host: mongo
+      port: 27017
+  kafka:
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      bootstrap-servers: kafka:9092
+      group-id: paymentGroup,orderGroup
+      auto-offset-reset: earliest
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.json.type.mapping: orderConfirmation:com.rafaelswr.notification.kafka.order.OrderConfirmation,paymentConfirmation:com.rafaelswr.notification.kafka.payment.PaymentConfirmation
+  mail:
+    host: email-dev
+    port: 1025
+    username: rafaelswr
+    password: 1223
+    properties:
+      mail:
+        smtp:
+          trust: '*'
+        auth: true
+        starttls:
+          enabled:true
+        connectionTimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+
+
+
+server:
+  port: 8060
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-server:8761/eureka/

@@ -5,7 +5,7 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     database: postgresql
   datasource:
-    url: jdbc:postgresql://localhost:5436/payment
+    url: jdbc:postgresql://postgres:5432/payment
     username: rafaelswr
     password: 1223
     driver-class-name: org.postgresql.Driver
@@ -14,10 +14,10 @@ server:
 
 application:
   config:
-    order: http://localhost:8070/order
+    order: http://order:8070/order
   kafka:
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: kafka:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:

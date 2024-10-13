@@ -22,7 +22,7 @@ public class ProductClient {
 
 
     //@Value("${application.config.product")
-    @Value("http://localhost:8989/product")
+    @Value("http://product:8989/product")
     private String productUrl;
     private final RestTemplate restTemplate;
 

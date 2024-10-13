@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  notification:
+    container_name: "ms_notification"
+    image: ms/notification
+    ports:
+      - "8060:8060"
+    networks:
+      - microservices-net
+
+networks:
+  microservices-net:
+    external: true

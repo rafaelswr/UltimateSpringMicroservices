@@ -6,5 +6,38 @@ spring:
       enabled: true
   main:
     banner-mode: off
+  cloud:
+    config:
+      enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    username: rafaelswr
+    password: 1223
+    url: jdbc:postgresql://postgres:5432/order
+    driver-class-name: org.postgresql.Driver
+
+application:
   config:
-    import: optional:configserver:http://localhost:8888
+    customer: http://customer:8099/customer
+    product: http://product:8989/product
+    payment: http://payment:9090/payment
+  kafka:
+    producer:
+      bootstrap-servers: kafka:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.Mapping: orderConfirmation:com.rafaelswr.order.kafka.OrderConfirmation
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-server:8761/eureka
+
+
+server:
+  port: 8070
