@@ -34,5 +34,3 @@ spring:
           predicates:
             - Path=/category/**
 
-server:
-  port: 8022

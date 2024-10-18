@@ -5,7 +5,7 @@ services:
     container_name: "ms_discovery"
     image: ms/discovery
     ports:
-      - 8761:8761
+      - "8761:8761"
     networks:
       - microservices-net
 
