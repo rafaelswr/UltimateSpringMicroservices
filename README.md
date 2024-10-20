@@ -11,11 +11,11 @@ A simple eCommerce app that follows a microservices architecture with five diffe
 
 - **Spring Cloud (netflix eureka, api-gateway, zipkin, kafka, OpenFeign)**
 - **Rest Template communication**
-- **Centralized config server service**
-- **Docker service containers app (postgreSQL, pgadmin, mongo, mongoExpress, email, kafka)** 
-- **Java Mail Sender** 
+- **Centralized config server**
+- **Docker for service containers (PostgreSQL, pgAdmin, MongoDB, Mongo Express, Email, Kafka)** 
+- **JavaMailSender** 
 - **Postman**
-- **Docker by deploy microservices using docker-compose & dockerFile**
+- **Docker for deploying microservices using Docker Compose & Dockerfile**
 
 ### IDE 
 IntelliJ Idea
